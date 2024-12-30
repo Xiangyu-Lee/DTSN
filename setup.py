@@ -20,6 +20,7 @@ setup(
         "imageio-ffmpeg",
         "ipdb",
         "moviepy",
+        "mujoco",
         "mujoco-py",
         "opencv-python",
         "openvr",
