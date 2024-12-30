@@ -22,14 +22,15 @@ The IKEA Furniture Assembly environment provides:
 <br>
 
 ## (1) Directories
-- 'docs': Detail documentation
-- 'method': 
- - 'algorithms': Reinforcement learning code
- - 'networks': Ensemble of spiking actor network and critic network
- - 'dtsn_sac': Model of double threshold spiking neuron
-- 'furniture':
- - 'config': Configuration files for the environments
- - 'env': Environment code of IKEA furniture assembly
+The structure of the repository:
+- `docs`: Detail documentation
+- `furniture`:
+  - `config`: Configuration files for the environments
+  - `env`: Envrionment code of the IKEA furniture assembly
+- `method`:
+  - `algorithms`: Reinforcement learning code
+  - `networks`: Ensemble of spiking actor network and critic network
+  - `dtsn_sac`: Model of double threshold spiking neuron
  
 ## (2) Installation
 
