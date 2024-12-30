@@ -28,8 +28,8 @@ The IKEA Furniture Assembly environment provides:
 
 ### Installation
 ```bash
-git clone 
-cd 
+git clone https://github.com/clvrai/furniture.git
+cd furniture
 pip install -e .
 ```
 
