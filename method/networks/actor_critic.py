@@ -60,26 +60,6 @@ class Actor(nn.Module):
         self.decoder = PopSpikeDecoder(act_dim, config.de_pop_dim, output_activation=nn.Identity)
         # Use a complete separate deep MLP to predict log std
         self.log_std_network = core.mlp([obs_dim] + list(config.hidden_sizes) + [act_dim], nn.ReLU)
-        self.fcs = nn.ModuleDict()
-        self._dists = {}
-
-        for k, v in ac_space.spaces.items():
-            if isinstance(v, gym.spaces.Box): # and self._gaussian:  # for convenience to transfer bc policy
-                self.fcs.update(
-                    {k: MLP(config, config.policy_mlp_dim[-1], gym.spaces.flatdim(v) * 2)}
-                )
-            else:
-                self.fcs.update(
-                    {k: MLP(config, config.policy_mlp_dim[-1], gym.spaces.flatdim(v))}
-                )
-
-            if isinstance(v, gym.spaces.Box):
-                if self._gaussian:
-                    self._dists[k] = lambda m, s: FixedNormal(m, s)
-                else:
-                    self._dists[k] = lambda m, s: Identity(m)
-            else:
-                self._dists[k] = lambda m, s: FixedCategorical(logits=m)
 
     @property
     def info(self):
