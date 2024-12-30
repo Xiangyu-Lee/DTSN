@@ -17,7 +17,6 @@ from .encoder import Encoder
 from ..utils.pytorch import to_tensor
 from ..utils.logger import logger
 
-from method.dtsn_sac.dtsn import SquashedGaussianPopSpikeActor
 from method.dtsn_sac.dtsn import PopSpikeEncoderRegularSpike
 from method.dtsn_sac.dtsn import SpikeMLP
 from method.dtsn_sac.dtsn import PopSpikeDecoder
