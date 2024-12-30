@@ -19,7 +19,6 @@ def create_parser(env=None):
         "--env",
         type=str,
         default="FurnitureSawyerDenseRewardEnv",
-        # default=env if env is not None else "furniture-baxter-flip-v0",
         help="Environment name",
     )
 
