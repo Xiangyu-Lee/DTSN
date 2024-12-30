@@ -6,7 +6,7 @@ setup(
     version="0.2",
     author="",
     author_email="",
-    description="IKEA furniture assembly environment",
+    description="",
     packages=find_packages(),
     install_requires=[
         "numpy",
