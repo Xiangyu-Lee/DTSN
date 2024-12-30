@@ -93,10 +93,6 @@ class Actor(nn.Module):
         :param with_logprob: if true return log prob
         :return: action scale with action limit
         """
-        if ob['object_ob'].shape[0] == 128:
-            batch_size =128
-        else:
-            batch_size = 1
         ob = self.encoder1(ob, detach_conv=detach_conv)
         in_pop_spikes = self.encoder(ob, batch_size)
         out_pop_activity = self.snn(in_pop_spikes, batch_size)
