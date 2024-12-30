@@ -27,6 +27,7 @@ The structure of the repository:
 - `furniture`:
   - `config`: Configuration files for the environments
   - `env`: Envrionment code of the IKEA furniture assembly
+  - `run`: Execution file
 - `method`:
   - `algorithms`: Reinforcement learning code
   - `networks`: Ensemble of spiking actor network and critic network
