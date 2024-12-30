@@ -8,7 +8,7 @@ from functools import reduce
 import operator
 
 sys.path.append('../../')
-import method.popsan_sac.core_cuda as core
+import method.dtsn_sac.core_cuda as core
 
 """
 Parameters for SNN
@@ -109,6 +109,8 @@ class PseudoSpikeRect(torch.autograd.Function):
         ctx.save_for_backward(input)
         spike_output = torch.where(input >= Pos_threshold, torch.ones_like(input), 
                                    torch.where(input <= Neg_threshold, -torch.ones_like(input), torch.zeros_like(input)))
+        #Outputs 1 if above positive threshold, -1 if below negative threshold, otherwise 0.
+
         return spike_output
         
     @staticmethod
@@ -146,7 +148,7 @@ class SpikeMLP(nn.Module):
 
     def neuron_model(self, syn_func, pre_layer_output, current, volt, spike):
         """
-        LIF Neuron Model
+        DTSN Neuron Model
         :param syn_func: synaptic function
         :param pre_layer_output: output from pre-synaptic layer
         :param current: current of last step
