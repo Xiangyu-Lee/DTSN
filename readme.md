@@ -1,3 +1,6 @@
+#Double-Threshold Spiking Reinforcement Learning for Energy-efficient Robotic Arm Furniture Assembly
+This is the implementation of our DTSN paper, training and evaluation on IKEA.
+
 ## (0) IKEA Furniture Assembly Environment 
 
 [[Environment website (https://clvrai.com/furniture)](https://clvrai.com/furniture)]<br/>
