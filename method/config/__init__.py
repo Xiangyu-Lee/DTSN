@@ -13,7 +13,6 @@ def str2intlist(value):
     else:
         return [int(num) for num in value.split(",")]
 
-
 def str2list(value):
     if not value:
         return value
@@ -49,10 +48,7 @@ def add_method_arguments(parser):
     parser.add_argument('--mean_range', default=(-3,3))
     parser.add_argument('--std', default=math.sqrt(0.15))
     parser.add_argument('--spike_ts', type=float, default=5)
-    parser.add_argument('--decode', type=str, default='last-mem', choices=['fr-mlp', 'last-mem', 'max-mem', 'max-abs-mem', 'mean-mem'])
-    # parser.add_argument('--beta', type=float, default=0.0, help='the exponent for the power-spectrum of the generated noise')
-    # parser.add_argument('--sigma_init', type=float, default=0.5, help='the sigma for the generated noise')
-    # parser.set_defaults(noisy_nsn=True, noise_reduction=False)
+
     # algorithm
     parser.add_argument(
         "--algo",
