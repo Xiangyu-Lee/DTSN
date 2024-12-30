@@ -17,11 +17,11 @@ from .encoder import Encoder
 from ..utils.pytorch import to_tensor
 from ..utils.logger import logger
 
-from method.popsan_sac.popsan import SquashedGaussianPopSpikeActor
-from method.popsan_sac.popsan import PopSpikeEncoderRegularSpike
-from method.popsan_sac.popsan import SpikeMLP
-from method.popsan_sac.popsan import PopSpikeDecoder
-import method.popsan_sac.core_cuda as core
+from method.dtsn_sac.dtsn import SquashedGaussianPopSpikeActor
+from method.dtsn_sac.dtsn import PopSpikeEncoderRegularSpike
+from method.dtsn_sac.dtsn import SpikeMLP
+from method.dtsn_sac.dtsn import PopSpikeDecoder
+import method.dtsn_sac.core_cuda as core
 from torch.distributions.normal import Normal
 import math
 ENCODER_REGULAR_VTH = 0.999
