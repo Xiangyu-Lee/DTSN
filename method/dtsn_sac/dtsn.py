@@ -11,7 +11,7 @@ sys.path.append('../../')
 import method.dtsn_sac.core_cuda as core
 
 """
-Parameters for SNN
+Parameters for DTSN
 """
 
 ENCODER_REGULAR_VTH = 0.999
