@@ -103,14 +103,13 @@ class PopSpikeDecoder(nn.Module):
         return raw_act
         
 class PseudoSpikeRect(torch.autograd.Function):
-    """ Pseudo-gradient function for spike - Derivative of Rect Function """
+    """ Double threshold spiking neuron characteristics """
     @staticmethod
     def forward(ctx, input): 
         ctx.save_for_backward(input)
         spike_output = torch.where(input >= Pos_threshold, torch.ones_like(input), 
                                    torch.where(input <= Neg_threshold, -torch.ones_like(input), torch.zeros_like(input)))
         #Outputs 1 if above positive threshold, -1 if below negative threshold, otherwise 0.
-
         return spike_output
         
     @staticmethod
@@ -122,7 +121,7 @@ class PseudoSpikeRect(torch.autograd.Function):
 
         
 class SpikeMLP(nn.Module):
-    """ Spike MLP with Input and Output population neurons """
+    """ Spike MLP with double threshold spiking neurons """
     def __init__(self, in_pop_dim, out_pop_dim, hidden_sizes, spike_ts, device):
         """
         :param in_pop_dim: input population dimension
@@ -203,57 +202,3 @@ class SpikeMLP(nn.Module):
 LOG_STD_MAX = 2
 LOG_STD_MIN = -20
 
-
-class SquashedGaussianPopSpikeActor(nn.Module):
-    """ Squashed Gaussian Stochastic Population Coding Spike Actor with Fix Encoder """
-    def __init__(self, obs_dim, act_dim, en_pop_dim, de_pop_dim, hidden_sizes,
-                 mean_range, std, spike_ts, act_limit, device):
-        """
-        :param obs_dim: observation dimension
-        :param act_dim: action dimension
-        :param en_pop_dim: encoder population dimension
-        :param de_pop_dim: decoder population dimension
-        :param hidden_sizes: list of hidden layer sizes
-        :param mean_range: mean range for encoder
-        :param std: std for encoder
-        :param spike_ts: spike timesteps
-        :param act_limit: action limit
-        :param device: device
-        """
-        super().__init__()
-        self.act_limit = act_limit
-        self.encoder = PopSpikeEncoderRegularSpike(obs_dim, en_pop_dim, spike_ts, mean_range, std, device)
-        self.snn = SpikeMLP(obs_dim*en_pop_dim, act_dim*de_pop_dim, hidden_sizes, spike_ts, device)
-        self.decoder = PopSpikeDecoder(act_dim, de_pop_dim, output_activation=nn.Identity)
-        # Use a complete separate deep MLP to predict log std
-        self.log_std_network = core.mlp([obs_dim] + list(hidden_sizes) + [act_dim], nn.ReLU)
-
-    def forward(self, obs, batch_size, deterministic=False, with_logprob=True):
-        """
-        :param obs: observation
-        :param batch_size: batch size
-        :param deterministic: If true use deterministic action
-        :param with_logprob: if true return log prob
-        :return: action scale with action limit
-        """
-        in_pop_spikes = self.encoder(obs, batch_size)
-        out_pop_activity = self.snn(in_pop_spikes, batch_size)
-        mu = self.decoder(out_pop_activity)
-        log_std = self.log_std_network(obs)
-        log_std = torch.clamp(log_std, LOG_STD_MIN, LOG_STD_MAX)
-        std = torch.exp(log_std)
-        # Pre-squash distribution and sample
-        pi_distribution = Normal(mu, std)
-        if deterministic:
-            # Only used for evaluating policy at test time.
-            pi_action = mu
-        else:
-            pi_action = pi_distribution.rsample()
-        if with_logprob:
-            logp_pi = pi_distribution.log_prob(pi_action).sum(axis=-1)
-            logp_pi -= (2 * (np.log(2) - pi_action - F.softplus(-2 * pi_action))).sum(axis=1)
-        else:
-            logp_pi = None
-        pi_action = torch.tanh(pi_action)
-        pi_action = self.act_limit * pi_action
-        return pi_action, logp_pi
