@@ -51,7 +51,6 @@ class SACAgent(BaseAgent):
         self._critic_target = Critic(config, ob_space, ac_space)
         self._network_cuda(config.device)
         self._copy_target_network(self._critic_target, self._critic)
-        # self._actor.encoder.copy_conv_weights_from(self._critic.encoder)
 
         # optimizers
         self._alpha_optim = optim.Adam(
@@ -279,9 +278,3 @@ class SACAgent(BaseAgent):
             )
 
         return info.get_dict(only_scalar=True)
-
-# if __name__ == '__main__':
-#     model = Actor(args).to(device)
-
-#     flop,params = get_model_complexity_info(model,(1,64),as_strings=True,print_per_layer_stat=True)
-#     print(f"FLOPs: {flop}, Parameters: {params}")
