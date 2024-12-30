@@ -21,7 +21,17 @@ The IKEA Furniture Assembly environment provides:
 
 <br>
 
-## (1) Installation
+## (1) Directories
+- docs: Detail documentation
+- method: 
+ - algorithms: Reinforcement learning code
+ - networks: Ensemble of spiking actor network and critic network
+ - dtsn_sac: Model of double threshold spiking neuron
+- furniture:
+ - config: Configuration files for the environments
+ - env: Environment code of IKEA furniture assembly
+ 
+## (2) Installation
 
 ### Prerequisites
 - Ubuntu 18.04, MacOS Catalina, Windows10
@@ -79,7 +89,7 @@ unzip [os]_binary.zip
 ```
 Inside `furniture/binary` there should be `Furniture.app` for macOS, and `Furniture.x86_64, Furniture_Data` for Ubuntu, and `Furniture.exe, Furniture_Data` for Windows.
 
-### (2) Example training and testing
+## (3) Example training and testing
 We provide example commands for `table_lack_0825`. You can simply change the furniture name to test on other furniture models.
 For evaluation, you can add `--is_train False --num_eval 50` to the training command:
 ```shell script
