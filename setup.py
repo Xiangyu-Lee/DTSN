@@ -35,5 +35,6 @@ setup(
         "wandb",
         "torch",
         "torchvision",
+        "furniture",
     ],
 )
