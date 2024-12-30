@@ -197,8 +197,3 @@ class SpikeMLP(nn.Module):
             out_pop_act += out_pop_states[2]
         out_pop_act = out_pop_act / self.spike_ts
         return out_pop_act
-
-
-LOG_STD_MAX = 2
-LOG_STD_MIN = -20
-
