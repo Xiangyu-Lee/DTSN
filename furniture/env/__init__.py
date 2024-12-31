@@ -6,12 +6,7 @@ from gym.envs.registration import register
 from furniture.env.base import make_env, make_vec_env
 
 # register all environment to use
-from .furniture_baxter import FurnitureBaxterEnv
-from .furniture_cursor import FurnitureCursorEnv
-from .furniture_jaco import FurnitureJacoEnv
-from .furniture_panda import FurniturePandaEnv
 from .furniture_sawyer import FurnitureSawyerEnv
-from .furniture_fetch import FurnitureFetchEnv
 from .furniture_sawyer_dense import FurnitureSawyerDenseRewardEnv
 
 
