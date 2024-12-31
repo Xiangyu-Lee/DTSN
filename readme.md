@@ -29,7 +29,7 @@ The structure of the repository:
   - `env`: Envrionment code of the IKEA furniture assembly
   - `run`: Execution file
 - `method`:
-  - `algorithms`: Reinforcement learning code
+  - `algorithms`: Code for RL/IL
   - `networks`: Ensemble of spiking actor network and critic network
   - `dtsn_sac`: Model of double threshold spiking neuron
  
