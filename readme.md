@@ -31,7 +31,7 @@ The structure of the repository:
 - `method`:
   - `algorithms`: Code for RL/IL
   - `networks`: Ensemble of spiking actor network and critic network
-  - `dtsn_sac`: Model of double threshold spiking neuron
+  - `dtsn_sac`: Model of double threshold spiking neuron(DTSN)
  
 ## (2) Installation
 
