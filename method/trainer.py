@@ -18,7 +18,7 @@ import numpy as np
 import moviepy.editor as mpy
 from tqdm import tqdm, trange
 
-from .algorithms import RL_ALGOS, IL_ALGOS, get_agent_by_name
+from .algorithms import RL_ALGOS, get_agent_by_name
 from .algorithms.rollouts import RolloutRunner
 from .utils.info_dict import Info
 from .utils.logger import logger
