@@ -9,21 +9,6 @@ from furniture.env.base import make_env, make_vec_env
 from .furniture_sawyer import FurnitureSawyerEnv
 from .furniture_sawyer_dense import FurnitureSawyerDenseRewardEnv
 
-
-# add cursor environment to Gym
-register(
-    id="IKEACursor-v0",
-    entry_point="furniture.env.furniture_gym:FurnitureGym",
-    kwargs={
-        "id": "IKEACursor-v0",
-        "name": "FurnitureCursorEnv",
-        "furniture_id": 0,
-        "background": "Lab",
-        "port": 1050,
-    },
-)
-
-
 # add sawyer environment to Gym
 register(
     id="IKEASawyer-v0",
@@ -36,63 +21,6 @@ register(
         "port": 1050,
     },
 )
-
-
-# add baxter environment to Gym
-register(
-    id="IKEABaxter-v0",
-    entry_point="furniture.env.furniture_gym:FurnitureGym",
-    kwargs={
-        "id": "IKEABaxter-v0",
-        "name": "FurnitureBaxterEnv",
-        "furniture_id": 1,
-        "background": "Interior",
-        "port": 1050,
-    },
-)
-
-
-# add jaco environment to Gym
-register(
-    id="IKEAJaco-v0",
-    entry_point="furniture.env.furniture_gym:FurnitureGym",
-    kwargs={
-        "id": "IKEAJaco-v0",
-        "name": "FurnitureJacoEnv",
-        "furniture_id": 1,
-        "background": "Interior",
-        "port": 1050,
-    },
-)
-
-
-# add panda environment to Gym
-register(
-    id="IKEAPanda-v0",
-    entry_point="furniture.env.furniture_gym:FurnitureGym",
-    kwargs={
-        "id": "IKEAPanda-v0",
-        "name": "FurniturePandaEnv",
-        "furniture_id": 1,
-        "background": "Interior",
-        "port": 1050,
-    },
-)
-
-
-# add panda environment to Gym
-register(
-    id="IKEAFetch-v0",
-    entry_point="furniture.env.furniture_gym:FurnitureGym",
-    kwargs={
-        "id": "IKEAFetch-v0",
-        "name": "FurnitureFetchEnv",
-        "furniture_id": 59,
-        "background": "Interior",
-        "port": 1050,
-    },
-)
-
 
 # add sawyer dense reward environment to Gym
 register(
